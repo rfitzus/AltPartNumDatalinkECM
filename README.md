@@ -10,11 +10,6 @@ Within Kinetic there are numerous types of Alternative Part Numbers.  This guide
 
 Add the following Datalink to your CallDefinitions.json file or add it using the JSON Web Service built directly into ECM.     
 
-This datalink uses the Rest Service AlternatePartSvc. 
-
-
-![](images/15-RestAPI.png)
-
 ```
 {
     "Name": "AlternatePart",
@@ -53,7 +48,15 @@ This datalink uses the Rest Service AlternatePartSvc.
   }
 ```
 
+This datalink uses the Rest Call, AlternatePartSvc, to find if the PartNum has a matching Substitute Part within Kinetic. 
+
+![](images/15-RestAPI.png)
+
 ## Creating Fields and Field Groups
+
+When we create the additional steps in the workflow we'll need to store the datalinks results in a fieldgroup.  We'll create the field in ECM and call it **SUBPARTS**.
+
+![](images/20-FieldsAndFieldGroup.png)
 
 ## Changes to the Stock Workflow
 
