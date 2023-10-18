@@ -90,15 +90,23 @@ The first task we'll add is the DataLink Field Group task. It runs the datalink 
 
 ![](images/30-DatalinkFieldGroupToTempTable.png)
 
+---
+
 The second task we'll add is an Aggregate.  It will perform the operation **ANY**.  This will determine  if any lines on the sales order had substitute parts.  The total value is stored in a temporary field, zCountSubParts. 
 
 ![](images/35-AggregateCheck.png)
+
+---
 
 The third task we'll add is an End Action.  This references the temporary field, zCountSubParts. We'll check the inverse of this result.  If zCountSubParts equals zero, end the action.  
 
 ![](images/40-EndActionCheckAggregate.png)
 
+---
+
 The fourth task we'll add is an AdvancedMath task.  AdvancedMath is capable of updating a field group without entirely resetting the field group.  We will use this capability to individually select specific lines and update those lines if they have a substitute part. 
+
+![](images/45-AdvancedMathUpdate.png)
 
 We'll use the following expression to only update lines where we found a substitute part.   
 
@@ -106,6 +114,6 @@ We'll use the following expression to only update lines where we found a substit
 IIF($FieldGroup.SubPart.SUBPART_PartNum = $Field.LINE_PartNum,$FieldGroup.SubPart.SUBPART_AltPartNum,$Field.LINE_PartNum)
 ```
 
-![](images/45-AdvancedMathUpdate.png)
+---
 
 *Your SO Automation workflow should now be capable of finding substitute parts in Kinetic and updating the lines part number on the sales order.* 
