@@ -10,6 +10,10 @@ Within Kinetic there are numerous types of Alternative Part Numbers.  This guide
 
 ![](images/05-StockSOWorkflow.png)
 
+We'll an additional step to the Stock Workflow after **Check Line Items**. 
+
+![](images/10-AltPartWorkflow.png)
+
 ## The Datalink
 
 ## Creating Fields and Field Groups
