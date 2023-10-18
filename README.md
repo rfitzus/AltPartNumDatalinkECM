@@ -6,5 +6,12 @@ Within Kinetic there are numerous types of Alternative Part Numbers.  This guide
 
 ![](images/00-KineticAlternateSubstituteParts.png)
 
+## Changes to the Stock Workflow
+
+## The Datalink
+
+## Creating Fields and Field Groups
+
+
 
 
