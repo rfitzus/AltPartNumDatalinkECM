@@ -66,13 +66,15 @@ Add two fields to the fieldgroup called:
 
 ## Adding an Additional Step to the Workflow
 
+Below is the stock SO Automation Workflow. 
+
 ![](images/05-StockSOWorkflow.png)
 
 We'll an additional step to the Stock Workflow after **Check Line Items**.  Update the branching accordingly so that the steps flow properly.   
 
 ![](images/10-AltPartWorkflow.png)
 
-## Adding an Action to the new Step
+## Adding an Action to the New Step
 
 Within our new step we will add a single **Action**. You can call it *Update Part Num*. We will add four tasks to that Action:
 - Datalink Field Group
@@ -84,10 +86,27 @@ Within our new step we will add a single **Action**. You can call it *Update Par
 
 ## Adding the Tasks to the Action
 
+The first task we'll add is the DataLink Field Group task. It runs the datalink against the field group **LineItems**.  The output is stored in the field group we created called SUBPARTS. 
 
+![](images/30-DatalinkFieldGroupToTempTable.png)
 
+The second task we'll add is an Aggregate.  It will perform the operation **ANY**.  This will determine how many lines on the sales order had substitute parts.  The total value is stored in a temporary field, zCountSubParts. 
 
+![](images/35-AggregateCheck.png)
 
+The third task we'll add is an End Action.  This references the temporary field, zCountSubParts. We'll check the inverse.  If zCountSubParts equals zero, end the action.  
+
+![](images/40-EndActionCheckAggregate.png)
+
+The fourth task we'll add is an AdvancedMath task.  AdvancedMath is capable of updating a field group without entirely resetting the field group.  We will use this capability to individually select specific lines and update those lines if they have a substitute part. 
+
+We'll use the following expression to only update lines where we found a substitute part.   
+
+```
+IIF($FieldGroup.SubPart.SUBPART_PartNum = $Field.LINE_PartNum,$FieldGroup.SubPart.SUBPART_AltPartNum,$Field.LINE_PartNum)
+```
+
+![](images/45-AdvancedMathUpdate.png)
 
 
 
