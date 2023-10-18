@@ -64,13 +64,15 @@ Add two fields to the fieldgroup called:
 
 ![](images/20-FieldsAndFieldGroup.png)
 
-## Changes to the Stock Workflow
+## Adding an Additional Step to the Workflow
 
 ![](images/05-StockSOWorkflow.png)
 
 We'll an additional step to the Stock Workflow after **Check Line Items**.  Update the branching accordingly so that the steps flow properly.   
 
 ![](images/10-AltPartWorkflow.png)
+
+## Adding an Action to the new Step
 
 Within our new step we will add a single **Action**. You can call it *Update Part Num*. We will add four tasks to that Action:
 - Datalink Field Group
@@ -79,6 +81,9 @@ Within our new step we will add a single **Action**. You can call it *Update Par
 - Advanced Math
 
 ![](images/25-AltPartNumTasks.png)
+
+## Adding the Tasks to the Action
+
 
 
 
