@@ -1,0 +1,36 @@
+
+{
+    "Name": "AlternatePart",
+    "Url": "ENVIRONMENTURL/api/v1/Erp.BO.AlternatePartSvc/AlternateParts?%24filter=Company%20eq%20'@Company'%20and%20PartNum%20eq%20'@PartNum'%20and%20RecType%20eq%20'S'",
+    "Method": "Get",
+    "AuthScheme": "@TokenType",
+    "AuthParameter": "@AccessToken",
+    "AllowInvalidSSL": false,
+    "CallChain": "ErpLogin",
+    "LogPath": "C:\\temp\\AlternatePart.log",
+    "WSHeaders": [
+      {
+        "Key": "CallSettings",
+        "Value": "{Company: \"@Company\", PartNum: \"@PartNum\", RecType: \"@RecType\"}"
+      }
+    ],
+    "CollectionPath": "value",
+    "Columns": [
+      {
+        "Name": "Company",
+        "Path": "Company"
+      },
+      {
+        "Name": "PartNum",
+        "Path": "PartNum"
+      },
+      {
+        "Name": "RecType",
+        "Path": "RecType"
+      },
+      {
+        "Name": "SubPart",
+        "Path": "SubPart"
+      }
+    ]
+  }
