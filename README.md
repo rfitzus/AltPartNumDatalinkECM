@@ -6,17 +6,63 @@ Within Kinetic there are numerous types of Alternative Part Numbers.  This guide
 
 ![](images/00-KineticAlternateSubstituteParts.png)
 
+## Creating The Datalink
+
+Add the following Datalink to your CallDefinitions.json file or add it using the JSON Web Service built directly into ECM.     
+
+This datalink uses the Rest Service AlternatePartSvc. 
+
+
+![](images/15-RestAPI.png)
+
+```
+{
+    "Name": "AlternatePart",
+    "Url": "ENVIRONMENTURL/api/v1/Erp.BO.AlternatePartSvc/AlternateParts?%24filter=Company%20eq%20'@Company'%20and%20PartNum%20eq%20'@PartNum'%20and%20RecType%20eq%20'S'",
+    "Method": "Get",
+    "AuthScheme": "@TokenType",
+    "AuthParameter": "@AccessToken",
+    "AllowInvalidSSL": false,
+    "CallChain": "ErpLogin",
+    "LogPath": "C:\\temp\\AlternatePart.log",
+    "WSHeaders": [
+      {
+        "Key": "CallSettings",
+        "Value": "{Company: \"@Company\", PartNum: \"@PartNum\", RecType: \"@RecType\"}"
+      }
+    ],
+    "CollectionPath": "value",
+    "Columns": [
+      {
+        "Name": "Company",
+        "Path": "Company"
+      },
+      {
+        "Name": "PartNum",
+        "Path": "PartNum"
+      },
+      {
+        "Name": "RecType",
+        "Path": "RecType"
+      },
+      {
+        "Name": "SubPart",
+        "Path": "SubPart"
+      }
+    ]
+  }
+```
+
+## Creating Fields and Field Groups
+
 ## Changes to the Stock Workflow
 
 ![](images/05-StockSOWorkflow.png)
 
-We'll an additional step to the Stock Workflow after **Check Line Items**. 
+We'll an additional step to the Stock Workflow after **Check Line Items**.  Update the branching accordingly so that the steps flow properly.   
 
 ![](images/10-AltPartWorkflow.png)
 
-## The Datalink
-
-## Creating Fields and Field Groups
 
 
 
