@@ -54,9 +54,9 @@ This datalink uses the Rest Call, AlternatePartSvc, to find if the PartNum has a
 
 ![](images/15-RestAPI.png)
 
-## Creating Fields and Field Groups
+## Creating Fields and a Field Group
 
-Within the workflow we'll need to store the datalink's results in a fieldgroup.  We'll create the field group in ECM and call it **SUBPART**.
+Within the workflow we'll need to store the datalink's results in a fieldgroup.  We'll create the fieldgroup in ECM and call it **SUBPART**.
 
 Add two fields to the fieldgroup called: 
 - SUBPART_PartNum
@@ -76,7 +76,7 @@ We'll an additional step to the Stock Workflow after **Check Line Items**.  Upda
 
 ## Adding an Action to the New Step
 
-Within our new step we will add a single **Action**. You can call it *Update Part Num*. We will add four tasks to that Action:
+Within our new step we will add a single **Action**. You can call it *Update PartNum*. We will add four tasks to that Action:
 - Datalink Field Group
 - Aggregrate
 - End Action
@@ -90,11 +90,11 @@ The first task we'll add is the DataLink Field Group task. It runs the datalink 
 
 ![](images/30-DatalinkFieldGroupToTempTable.png)
 
-The second task we'll add is an Aggregate.  It will perform the operation **ANY**.  This will determine how many lines on the sales order had substitute parts.  The total value is stored in a temporary field, zCountSubParts. 
+The second task we'll add is an Aggregate.  It will perform the operation **ANY**.  This will determine  if any lines on the sales order had substitute parts.  The total value is stored in a temporary field, zCountSubParts. 
 
 ![](images/35-AggregateCheck.png)
 
-The third task we'll add is an End Action.  This references the temporary field, zCountSubParts. We'll check the inverse.  If zCountSubParts equals zero, end the action.  
+The third task we'll add is an End Action.  This references the temporary field, zCountSubParts. We'll check the inverse of this result.  If zCountSubParts equals zero, end the action.  
 
 ![](images/40-EndActionCheckAggregate.png)
 
@@ -108,6 +108,4 @@ IIF($FieldGroup.SubPart.SUBPART_PartNum = $Field.LINE_PartNum,$FieldGroup.SubPar
 
 ![](images/45-AdvancedMathUpdate.png)
 
-
-
-
+*Your SO Automation workflow should now be capable of finding substitute parts in Kinetic and updating the lines part number on the sales order.* 
