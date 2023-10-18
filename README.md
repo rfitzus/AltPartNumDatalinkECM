@@ -8,6 +8,8 @@ Within Kinetic there are numerous types of Alternative Part Numbers.  This guide
 
 ## Changes to the Stock Workflow
 
+![](images/05-StockSOWorkflow.png)
+
 ## The Datalink
 
 ## Creating Fields and Field Groups
